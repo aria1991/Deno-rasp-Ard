@@ -38,8 +38,8 @@ jobs:
         run: |
           sudo apt-get update -y && sudo apt-get install -y zip unzip
           echo "Compiling Deno version ${GITHUB_REF#refs/tags/}"
-          docker build -t deno-build --build-arg DENO_VERSION=${GITHUB_REF#refs/tags/} --file ./Dockerfile.compile .
-          docker run --rm -v $(pwd):/pwd deno-build cp /deno/target/release/deno /pwd/
+          sudo docker build -t deno-build --build-arg DENO_VERSION=${GITHUB_REF#refs/tags/} --file ./Dockerfile.compile .
+          sudo docker run --rm -v $(pwd):/pwd deno-build cp /deno/target/release/deno /pwd/
           zip deno-linux-arm64.zip ./deno
       - name: Upload Release Asset
         id: upload-release-asset-deno
