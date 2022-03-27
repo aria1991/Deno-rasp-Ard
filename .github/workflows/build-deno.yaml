@@ -16,7 +16,7 @@ jobs:
         run: |
           export VERSION="${{ github.ref }}"
           VERSION="${VERSION#refs/tags/}"
-          UPLOAD_URL=$(curl -s -H "Accept: application/json" https://api.github.com/repos/supabase/deno-arm64/releases | jq -r '.[] | select(.tag_name == "${VERSION}") | .upload_url')
+          UPLOAD_URL=$(curl -s -H "Accept: application/json" https://api.github.com/repos/supabase/deno-arm64/releases | jq -r ".[] | select(.tag_name == \"${VERSION}\") | .upload_url")
           echo "::set-output name=version::${VERSION}"
           echo "::set-output name=upload_url::${UPLOAD_URL}"
 
